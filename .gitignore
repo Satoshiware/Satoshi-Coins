@@ -1,8 +1,0 @@
-# Maven
-target/
-
-# IntelliJ
-lib/
-out/
-.idea/
-*.iml
