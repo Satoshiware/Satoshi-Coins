@@ -1,7 +1,7 @@
 <?php // API for coins.ini configuration file.
 
 // If upload is enabled for a particular user, the following script is executed:
-if(apcu_exists("UPLOAD" . $_SERVER['SERVER_NAME'] . $_SERVER['REMOTE_ADDR'])) {
+/*if(apcu_exists("UPLOAD" . $_SERVER['SERVER_NAME'] . $_SERVER['REMOTE_ADDR'])) {
     // If there is no "post" upload data then exit.
     if(empty($_FILES)) {
         header("Location: " . getURL());
@@ -25,7 +25,7 @@ if(apcu_exists("UPLOAD" . $_SERVER['SERVER_NAME'] . $_SERVER['REMOTE_ADDR'])) {
 }else if(realpath(__FILE__) == realpath($_SERVER['SCRIPT_FILENAME'])) {
     // If this file (coins.php) is accessed directly without upload enabled, redirect to the main (Satoshi Coins) page.
     header("Location: " . getURL());
-}
+}*/
 
 function getURL() {
     if(apcu_exists("URL_j7w13wd"))
@@ -87,7 +87,7 @@ function getKeywords() {
     exit("Error! The line beginning with \"KEYWORDS:\" is absent from the coins.ini file!");
 }
 
-function getPasswdHash() {
+/*function getPasswdHash() {
     $coin_ini = fopen("coins.ini", "r") or exit("Error: File \"coins.ini\" does not exist on the server!");
     while(!feof($coin_ini)) {
         $line = trim(fgets($coin_ini));
@@ -99,9 +99,9 @@ function getPasswdHash() {
 
     fclose($coin_ini);
     exit("Error! The line beginning with \"PASSWORD:\" is absent from the coins.ini file!");
-}
+}*/
 
-function writePasswdHash($hash = "") {
+/*function writePasswdHash($hash = "") {
     if(copy("coins.ini", "coins.ini.bak")) { // Make a backup. If successful then continue.
         $coin_ini = fopen("coins.ini", "r") or exit("Error: File \"coins.ini\" does not exist on the server!");
 
@@ -129,7 +129,7 @@ function writePasswdHash($hash = "") {
         exit("Error! The password hash was not successfully written. The coin.ini backup (coins.ini.bak) has been restored.");
     }
     unlink("coins.ini.bak"); // Deletes file "coins.ini.bak".
-}
+}*/
 
 // todo: update cache and clear and coins.ini file. Update notes above. it is modeled after Blockstream's way of listing it.
 function getExplorer() {
@@ -204,7 +204,7 @@ function getChains() {
     return $chains;
 }
 
-function downloadCoinINI() {
+/*function downloadCoinINI() {
     // Copy contents of coins.ini to coins.ini.tmp with the password hash removed. This new .tmp file is downloaded.
     $coin_ini = fopen("coins.ini", "r") or exit("Error: File \"coins.ini\" does not exist on the server!");
     $contents = "";
@@ -234,9 +234,9 @@ function downloadCoinINI() {
     flush();
     readfile("coins.ini.tmp") or exit("Error: File \"coins.ini.tmp\" does not exist on the server!");
     exit();
-}
+}*/
 
-function uploadCoinINI() {
+/*function uploadCoinINI() {
     // Generate form to upload the coins.ini file
     echo '<form action="coins.php" method="post" enctype="multipart/form-data">';
     echo '    <br><br><br><input type="file" name="fileToUpload" id="fileToUpload">';
@@ -245,7 +245,7 @@ function uploadCoinINI() {
 
     // Unlock uploads flag for this user. Time To Live: 60 seconds.
     apcu_store("UPLOAD" . $_SERVER['SERVER_NAME'] . $_SERVER['REMOTE_ADDR'], null,60);
-}
+}*/
 
 // Clear all coins.ini cache data
 function clearCache() {
