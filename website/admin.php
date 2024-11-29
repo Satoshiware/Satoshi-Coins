@@ -45,52 +45,52 @@ function adminCMD($cmd) {
     $parameters = explode(" ", $cmd); // Split the parameter(s) into an array.
 
     // Code to prevent brute force attacks from single users and botnets.
-    $brute_key_single = "{$_SERVER['SERVER_NAME']}~login:{$_SERVER['REMOTE_ADDR']}"; // Memory cache key to track number of login attempts for a single user.
-    if(!apcu_exists($brute_key_single))
-        apcu_store($brute_key_single, 0, BRUTE_SINGLE_TIME);
-    if(!apcu_exists("APCU_BOTNET_KEY_j7w13wd\""))
-        apcu_store("APCU_BOTNET_KEY_j7w13wd\"", 0, BRUTE_BOTNET_TIME);
-    apcu_inc($brute_key_single); // Increment number of password attempts for a single user.
-    apcu_inc("APCU_BOTNET_KEY_j7w13wd\""); // Increment number of password attempts by everyone.
+//    $brute_key_single = "{$_SERVER['SERVER_NAME']}~login:{$_SERVER['REMOTE_ADDR']}"; // Memory cache key to track number of login attempts for a single user.
+//    if(!apcu_exists($brute_key_single))
+//        apcu_store($brute_key_single, 0, BRUTE_SINGLE_TIME);
+//    if(!apcu_exists("APCU_BOTNET_KEY_j7w13wd\""))
+//        apcu_store("APCU_BOTNET_KEY_j7w13wd\"", 0, BRUTE_BOTNET_TIME);
+//    apcu_inc($brute_key_single); // Increment number of password attempts for a single user.
+//    apcu_inc("APCU_BOTNET_KEY_j7w13wd\""); // Increment number of password attempts by everyone.
 
     // Are there sufficient parameters to continue? Is the password being attacked?
-    if(count($parameters) < 2 || apcu_fetch($brute_key_single) > BRUTE_SINGLE_TRIES || apcu_fetch("APCU_BOTNET_KEY_j7w13wd") > BRUTE_BOTNET_TRIES) {
-        header("Location: " . getURL());
-        exit();
-    }
+//    if(count($parameters) < 2 || apcu_fetch($brute_key_single) > BRUTE_SINGLE_TRIES || apcu_fetch("APCU_BOTNET_KEY_j7w13wd") > BRUTE_BOTNET_TRIES) {
+//        header("Location: " . getURL());
+//        exit();
+//    }
 
     // The "passwd" command is the only one that has two parameters. Do this here and do it first.
-    $hash = getPasswdHash();
-    if(strtolower($parameters[0]) == "passwd" && count($parameters) <= 3) {
-       if($hash == "" || (count($parameters) == 3 && password_verify($parameters[2], $hash))) {
-            writePasswdHash(password_hash($parameters[1], PASSWORD_DEFAULT));
-            apcu_delete($brute_key_single); // Reset the number of password attempts for a single user.
-            echo "The password has been updated";
-       }else {
-           header("Location: " . getURL());
-       }
-        exit();
-    }else if(count($parameters) > 2) { // Are there too many parameters?
-        header("Location: " . getURL());
-        exit();
-    }
+//    $hash = getPasswdHash();
+//    if(strtolower($parameters[0]) == "passwd" && count($parameters) <= 3) {
+//       if($hash == "" || (count($parameters) == 3 && password_verify($parameters[2], $hash))) {
+//            writePasswdHash(password_hash($parameters[1], PASSWORD_DEFAULT));
+//            apcu_delete($brute_key_single); // Reset the number of password attempts for a single user.
+//            echo "The password has been updated";
+//       }else {
+//           header("Location: " . getURL());
+//       }
+//        exit();
+//    }else if(count($parameters) > 2) { // Are there too many parameters?
+//        header("Location: " . getURL());
+//        exit();
+//    }
 
     // Verify password
-    if($hash == "" || !password_verify($parameters[1], $hash)) {
-        header("Location: " . getURL());
-        exit();
-    }
-    apcu_delete($brute_key_single); // Reset the number of password attempts for a single user.
+ //   if($hash == "" || !password_verify($parameters[1], $hash)) {
+ //       header("Location: " . getURL());
+//        exit();
+//    }
+//    apcu_delete($brute_key_single); // Reset the number of password attempts for a single user.
 
     if(strtolower($parameters[0]) == "build") {
         build();
     }else if(strtolower($parameters[0]) == "update") {
         update();
-    }else if(strtolower($parameters[0]) == "upload") {
-        clearCache(); // Clear all coins.ini cache data
-        uploadCoinINI();
-    }else if(strtolower($parameters[0]) == "download") {
-        downloadCoinINI();
+//    }else if(strtolower($parameters[0]) == "upload") {
+//        clearCache(); // Clear all coins.ini cache data
+//        uploadCoinINI();
+//    }else if(strtolower($parameters[0]) == "download") {
+//        downloadCoinINI();
     }
 }
 
