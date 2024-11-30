@@ -1,24 +1,15 @@
 <?php
-$_SERVER['SERVER_NAME'] = "ko"; // todo: why is it not finding this? Where is it not finding it.????????????????????????????????????????????????
+$_SERVER['SERVER_NAME'] = "satoshi-coins";
 
-/*
+require 'admin.php';
+
+/*// Used to test the apcu is enabled!
 if(function_exists('apcu_enabled') && apcu_enabled()) {
-    echo "APCU:          It is Available";
-  } else {
-        echo "APCU:          Not Available; Function Exists: ";
-        if(function_exists('apcu_enabled')) {
-            echo "yes; APCU Enabled: ";
-            if(apcu_enabled()) {
-                echo "yes";
-            } else {
-                echo "no";
-            }
-        } else {
-            echo "no";
-        }
-    }
-*/
-
+    echo ""; // No output; therefore, the APCU is available!
+} else {
+    echo "Error! APCU is not available; Either the function does not exists or it exists, but is not enabled.";
+    echo "\n    Note: It is disabled by default on the CLI.";
+}*/
 
 // Form the string of keywords for this page
 $key_array = getKeywords();
@@ -178,8 +169,5 @@ if(!empty($_GET["search"])) {
             }
         </script>
     </body>
-
-    <footer>
-
-    </footer>
+    <footer></footer>
 </html>
