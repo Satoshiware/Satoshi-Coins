@@ -1,6 +1,25 @@
 <?php
 $_SERVER['SERVER_NAME'] = "ko"; // todo: why is it not finding this? Where is it not finding it.????????????????????????????????????????????????
 
+/*
+if(function_exists('apcu_enabled') && apcu_enabled()) {
+    echo "APCU:          It is Available";
+  } else {
+        echo "APCU:          Not Available; Function Exists: ";
+        if(function_exists('apcu_enabled')) {
+            echo "yes; APCU Enabled: ";
+            if(apcu_enabled()) {
+                echo "yes";
+            } else {
+                echo "no";
+            }
+        } else {
+            echo "no";
+        }
+    }
+*/
+
+
 // Form the string of keywords for this page
 $key_array = getKeywords();
 $keywords = "";
