@@ -7,6 +7,7 @@ This project was made to empower "banks" to be able to produce their own physica
   * This tool is used to generate the keys that go inside the Satoshi Coins.
 ### https://github.com/satoshiware/microbank
   * This repository contains a script (scripts/satoshi-coins.sh) that will install the Satoshi Coins' explorer found in the website folder.
+  * It also contains a script utility (scripts/wallu.sh) that is installed on the Bitcoin Wallet node. This tool is used to load Satoshi Coins en masse!
 
 ## Repository Contents
 ### original_art_work
