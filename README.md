@@ -1,6 +1,7 @@
 # Satoshi Coins - The Physical Bitcoins You Can Hold
-
 This project was made to empower "banks" to be able to produce their own physical Bitcoins (e.g. Casascius Coins)
+
+![Satoshi Coins](./photos/Coins.jpg?raw=true)
 
 ## Resources:
 ### https://github.com/satoshiware/keystickers
